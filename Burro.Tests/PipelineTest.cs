@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NUnit.Framework;
 
 namespace Burro.Tests
@@ -24,7 +22,7 @@ namespace Burro.Tests
         }
 
         [Test]
-        public void LastBuildHasThreeStates()
+        public void LastBuildHasThreeStatesIncludingUnknown()
         {
             Assert.AreEqual(3, Enum.GetValues(typeof (BuildState)).Length);
             Assert.IsTrue(new [] {BuildState.Success, BuildState.Failure, BuildState.Unknown}.All(state => Enum.GetValues(typeof(BuildState)).Cast<BuildState>().Contains(state)));
@@ -51,25 +49,5 @@ namespace Burro.Tests
             var pipeline = new Pipeline();   
             Assert.AreEqual(BuildState.Unknown, pipeline.BuildState);
         }
-    }
-
-    public class Pipeline
-    {
-        public string Name { get; set; }
-
-        public BuildState BuildState { get; set; }
-
-        public DateTime LastBuildTime { get; set; }
-
-        public Activity Activity { get; set; }
-
-        public string LinkURL { get; set; }
-    }
-
-    public enum BuildState
-    {
-        Unknown,
-        Success,
-        Failure
     }
 }

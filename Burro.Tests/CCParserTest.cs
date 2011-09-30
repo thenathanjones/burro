@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using NUnit.Framework;
 
@@ -27,7 +25,7 @@ namespace Burro.Tests
             _testProject.SetAttributeValue("activity", "Sleeping");
             _testProject.SetAttributeValue("lastBuildStatus", "Success");
             _testProject.SetAttributeValue("lastBuildLabel", "61");
-            _testProject.SetAttributeValue("lastBuildTime", "2011-09-08T11:35:18");
+            _testProject.SetAttributeValue("lastBuildTime", "2011-09-16T01:34:36");
             _testProject.SetAttributeValue("webUrl", "http://goserver.localdomain:8153/go/pipelines/CI-ProductA/61/Build/1");
         }
 
@@ -109,65 +107,18 @@ namespace Burro.Tests
             var pipeline = parser.Parse(_testDocument).First();
             Assert.AreEqual("http://goserver.localdomain:8153/go/pipelines/CI-ProductA/61/Build/1", pipeline.LinkURL);
         }
-    }
 
-    public class CCParser
-    {
-        internal IEnumerable<Pipeline> Parse(XDocument sampleDocument)
+        [Test]
+        public void ParsesTimeDateCorrectly()
         {
-            var projects = sampleDocument.Descendants("Project");
+            _testProjects.Add(_testProject);
+            var parser = new CCParser();
 
-            return projects.Select(p => new Pipeline() 
-            {
-                Name = p.Attribute("name").Value,
-                Activity = ParseActivity(p.Attribute("activity").Value),
-                BuildState = ParseState(p.Attribute("lastBuildStatus").Value),
-                LinkURL = p.Attribute("webUrl").Value
-            });
-        }
+            var pipeline = parser.Parse(_testDocument).First();
 
-        private BuildState ParseState(string value)
-        {
-            var projectState = BuildState.Unknown;
-            switch (value)
-            {
-                case "Success":
-                    projectState = BuildState.Success;
-                    break;
-                case "Failure":
-                    projectState = BuildState.Failure;
-                    break;
-            }
-
-            return projectState;
-        }
-
-        private Activity ParseActivity(string value)
-        {
-            var projectActivity = Activity.Unknown;
-            switch (value)
-            {
-                case "Sleeping":
-                    projectActivity = Activity.Idle;
-                    break;
-                case "Building":
-                    projectActivity = Activity.Busy;
-                    break;
-            }
-
-            return projectActivity;
-        }
-
-        internal XDocument LoadStream(Stream inputStream)
-        {
-            return XDocument.Load(inputStream);
+            Assert.AreEqual(new DateTime(2011, 9, 16, 1, 34, 36), pipeline.LastBuildTime);
         }
     }
 
-    public enum Activity
-    {
-        Unknown,
-        Idle,
-        Busy
-    }
+    
 }
