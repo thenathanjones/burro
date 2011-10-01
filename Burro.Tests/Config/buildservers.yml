@@ -1,0 +1,5 @@
+﻿  # YAML file for testing only loading projects
+  -
+    servertype: Go
+  -
+    servertype: CruiseControl

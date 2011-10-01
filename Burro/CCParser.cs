@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Burro
 {
-    public class CCParser
+    public class CCParser : ICruiseControlParser
     {
         public IEnumerable<Pipeline> Parse(XDocument sampleDocument)
         {
