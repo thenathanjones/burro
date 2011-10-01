@@ -37,7 +37,12 @@ namespace Burro.Tests
             core.Initialise("Config\\goserver.yml");
             Assert.IsNotNull(core.BuildServers);
             Assert.AreEqual(1, core.BuildServers.Count());
-            Assert.IsAssignableFrom<GoBuildServer>(core.BuildServers.First());
+
+            var goBuildServer = core.BuildServers.First();
+            Assert.IsAssignableFrom<GoBuildServer>(goBuildServer);
+            Assert.AreEqual("http://goserver.localdomain:8153/go", goBuildServer.URL);
+            Assert.AreEqual("ci", goBuildServer.Username);
+            Assert.AreEqual("secret", goBuildServer.Password);
         }
     }
 
@@ -52,6 +57,11 @@ namespace Burro.Tests
 
     public class BurroCore
     {
+        public static string ExtractValue(YamlMappingNode config, string key)
+        {
+            return config.Children.First(c => c.Key.ToString() == key).Value.ToString();
+        }
+
         public void Initialise(string pathToConfig)
         {
             LoadConfig(pathToConfig);
@@ -67,11 +77,11 @@ namespace Burro.Tests
         {
             var buildServer = yamlNode as YamlMappingNode;
 
-            var serverType = buildServer.Children.First(s => s.Key.ToString() == "servertype").Value.ToString();
+            var serverType = ExtractValue(buildServer, "servertype");
             switch (serverType)
             {
                 case "Go":
-                    return new GoBuildServer();
+                    return GoConfigParser.Parse(buildServer);
                 case "CruiseControl":
                     return new CruiseControlBuildServer();
                 default:
@@ -101,7 +111,25 @@ namespace Burro.Tests
         public IEnumerable<BuildServer> BuildServers { get; private set; }
     }
 
+    internal static class GoConfigParser
+    {
+        public static BuildServer Parse(YamlMappingNode config)
+        {
+            return new GoBuildServer()
+                       {
+                           URL = BurroCore.ExtractValue(config, "url"),
+                           Username = BurroCore.ExtractValue(config, "username"),
+                           Password = BurroCore.ExtractValue(config, "password")
+                       };   
+        }
+    }
+
     public abstract class BuildServer
     {
+        public string URL { get; set; }
+
+        public string Username { get; set; }
+
+        public string Password { get; set; }
     }
 }
