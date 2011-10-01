@@ -38,13 +38,22 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet.RepresentationModel">
+      <HintPath>..\packages\YamlDotNet.RepresentationModel.1.1.7\lib\YamlDotNet.RepresentationModel.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildServers\BuildServer.cs" />
+    <Compile Include="BuildServers\CruiseControlServer.cs" />
+    <Compile Include="BuildServers\GoServer.cs" />
+    <Compile Include="BurroCore.cs" />
     <Compile Include="CCParser.cs" />
+    <Compile Include="Config\GoConfigParser.cs" />
     <Compile Include="ICruiseControlParser.cs" />
     <Compile Include="Pipeline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

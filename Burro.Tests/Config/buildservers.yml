@@ -1,5 +1,11 @@
 ﻿  # YAML file for testing only loading projects
   -
     servertype: Go
+    url: http://goserver.localdomain:8153/go
+    username: ci
+    password: secret
   -
     servertype: CruiseControl
+    url: http://cruisecontrol.localdomain:8080
+    username: ci
+    password: secret
