@@ -14,5 +14,15 @@ namespace Burro.BuildServers
         public string Password { get; set; }
 
         public IEnumerable<string> Pipelines { get; set; }
+
+        public override void StartMonitoring()
+        {
+            // TODO
+        }
+
+        public override void StopMonitoring()
+        {
+            // TODO
+        }
     }
 }

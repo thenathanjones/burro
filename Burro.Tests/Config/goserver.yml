@@ -7,5 +7,5 @@
     pipelines:
       -
         name: CI-Trunk
-      -
+      - 
         name: Sonar

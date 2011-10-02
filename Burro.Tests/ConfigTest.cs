@@ -26,8 +26,8 @@ namespace Burro.Tests
             core.Initialise("Config\\buildservers.yml");
             Assert.IsNotNull(core.BuildServers);
             Assert.AreEqual(2, core.BuildServers.Count());
-            Assert.IsAssignableFrom<GoServer>(core.BuildServers.First());
-            Assert.IsAssignableFrom<CCServer>(core.BuildServers.ElementAt(1));
+            Assert.IsInstanceOf<GoServer>(core.BuildServers.First());
+            Assert.IsInstanceOf<CruiseControlServer>(core.BuildServers.ElementAt(1));
         }
 
         [Test]

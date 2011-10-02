@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Burro.BuildServers;
 using Burro.Config;
+using Ninject;
 using YamlDotNet.RepresentationModel;
 
 namespace Burro
@@ -27,20 +28,16 @@ namespace Burro
             BuildServers = RawConfig.Children.Select(ParseBuildServer);
         }
 
-        private BuildServer ParseBuildServer(YamlNode yamlNode)
+        private IBuildServer ParseBuildServer(YamlNode yamlNode)
         {
-            var buildServer = yamlNode as YamlMappingNode;
+            var config = yamlNode as YamlMappingNode;
 
-            var serverType = ExtractValue(buildServer, "servertype");
-            switch (serverType)
-            {
-                case "Go":
-                    return GoConfigParser.Parse(buildServer);
-                case "CruiseControl":
-                    return new CCServer();
-                default:
-                    throw new ArgumentException(serverType + " is not a valid build server type");
-            }
+            var serverType = ExtractValue(config, "servertype");
+            var typeName = "Burro.Config." + serverType + "ConfigParser";
+
+            _kernel.Bind<IConfigParser>().To(Type.GetType(typeName));
+
+            return _kernel.Get<IConfigParser>().Parse(config);
         }
 
         private void LoadConfig(string pathToConfig)
@@ -62,7 +59,7 @@ namespace Burro
 
         public YamlSequenceNode RawConfig { get; private set; }
 
-        public IEnumerable<BuildServer> BuildServers { get; private set; }
+        public IEnumerable<IBuildServer> BuildServers { get; private set; }
 
         public void StartMonitoring()
         {
@@ -71,5 +68,7 @@ namespace Burro
                 buildServer.StartMonitoring();
             }
         }
+
+        private readonly IKernel _kernel = new StandardKernel();
     }
 }

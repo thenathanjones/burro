@@ -7,9 +7,9 @@ using YamlDotNet.RepresentationModel;
 
 namespace Burro.Config
 {
-    internal static class GoConfigParser
+    internal class GoConfigParser : IConfigParser
     {
-        public static BuildServer Parse(YamlMappingNode config)
+        public IBuildServer Parse(YamlMappingNode config)
         {
             return new GoServer()
             {
@@ -20,14 +20,14 @@ namespace Burro.Config
             };
         }
 
-        private static IEnumerable<string> ParsePipelines(YamlMappingNode config)
+        private IEnumerable<string> ParsePipelines(YamlMappingNode config)
         {
             var pipelines = config.Children[new YamlScalarNode("pipelines")] as YamlSequenceNode;
 
             return pipelines == null ? new List<string>() : pipelines.Children.Select(c => ParsePipeline(c as YamlMappingNode));
         }
 
-        private static string ParsePipeline(YamlMappingNode yamlMappingNode)
+        private string ParsePipeline(YamlMappingNode yamlMappingNode)
         {
             return yamlMappingNode.Children[new YamlScalarNode("name")].ToString();
         }

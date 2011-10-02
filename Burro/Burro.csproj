@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,16 +47,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildServers\BuildServer.cs" />
-    <Compile Include="BuildServers\CCServer.cs" />
+    <Compile Include="BuildServers\CruiseControlServer.cs" />
     <Compile Include="BuildServers\GoServer.cs" />
+    <Compile Include="BuildServers\IBuildServer.cs" />
     <Compile Include="BurroCore.cs" />
-    <Compile Include="Parsers\CCParser.cs" />
+    <Compile Include="Config\CruiseControlConfigParser.cs" />
+    <Compile Include="Config\IConfigParser.cs" />
+    <Compile Include="Parsers\CruiseControlParser.cs" />
     <Compile Include="Config\GoConfigParser.cs" />
-    <Compile Include="Parsers\ICCParser.cs" />
+    <Compile Include="Parsers\ICruiseControlParser.cs" />
     <Compile Include="PipelineReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

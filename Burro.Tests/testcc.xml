@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Projects>
-	<Project name="CI-ProductA :: Build" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="61" lastBuildTime="2011-09-08T11:35:18" webUrl="http://goserver.localdomain:8153/go/pipelines/CI-ProductA/61/Build/1" />
-	<Project name="CI-ProductA :: Test" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="61" lastBuildTime="2011-09-08T11:35:18" webUrl="http://goserver.localdomain:8153/go/tab/build/detail/CI-ProductA/61/Test/1" />
-	<Project name="Sonar :: Sonar" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="78" lastBuildTime="2011-09-16T01:34:36" webUrl="http://goserver.localdomain:8153/go/pipelines/Sonar/78/Sonar/1" />
-	<Project name="Sonar :: Sonar :: Sonar" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="78" lastBuildTime="2011-09-16T01:34:36" webUrl="http://goserver.localdomain:8153/go/tab/build/detail/Sonar/78/Sonar/1/Sonar" />
-</Projects>
-
- 

@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace Burro.Parsers
 {
-    public interface ICCParser
+    public interface ICruiseControlParser
     {
         IEnumerable<PipelineReport> Parse(XDocument sampleDocument);
     }

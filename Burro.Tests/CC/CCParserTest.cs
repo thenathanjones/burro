@@ -35,7 +35,7 @@ namespace Burro.Tests.CC
         {
             var testInput = File.Open("CC\\testcc.xml", FileMode.Open);
 
-            var parser = new CCParser();
+            var parser = new CruiseControlParser();
             var loadedDocument = parser.LoadStream(testInput);
 
             Assert.IsNotNull(loadedDocument);
@@ -50,7 +50,7 @@ namespace Burro.Tests.CC
                 _testProjects.Add(_testProject);
             }
 
-            var parser = new CCParser();
+            var parser = new CruiseControlParser();
             var pipelines = parser.Parse(_testDocument);
 
             Assert.AreEqual(3, pipelines.Count());
@@ -63,7 +63,7 @@ namespace Burro.Tests.CC
 
             _testProject.SetAttributeValue("name", "TestProject");
 
-            var parser = new CCParser();
+            var parser = new CruiseControlParser();
             var pipeline = parser.Parse(_testDocument).First();
 
             Assert.AreEqual("TestProject", pipeline.Name);
@@ -73,7 +73,7 @@ namespace Burro.Tests.CC
         public void ParsesActivityCorrectly()
         {
             _testProjects.Add(_testProject);
-            var parser = new CCParser();
+            var parser = new CruiseControlParser();
 
             _testProject.SetAttributeValue("activity", "Sleeping");
             var pipeline = parser.Parse(_testDocument).First();
@@ -88,7 +88,7 @@ namespace Burro.Tests.CC
         public void ParsesLastBuildStatusCorrectly()
         {
             _testProjects.Add(_testProject);
-            var parser = new CCParser();
+            var parser = new CruiseControlParser();
             
             _testProject.SetAttributeValue("lastBuildStatus", "Success");
             var pipeline = parser.Parse(_testDocument).First();
@@ -103,7 +103,7 @@ namespace Burro.Tests.CC
         public void ParsesLinkURLCorrectly()
         {
             _testProjects.Add(_testProject);
-            var parser = new CCParser();
+            var parser = new CruiseControlParser();
 
             var pipeline = parser.Parse(_testDocument).First();
             Assert.AreEqual("http://goserver.localdomain:8153/go/pipelines/CI-ProductA/61/Build/1", pipeline.LinkURL);
@@ -113,7 +113,7 @@ namespace Burro.Tests.CC
         public void ParsesTimeDateCorrectly()
         {
             _testProjects.Add(_testProject);
-            var parser = new CCParser();
+            var parser = new CruiseControlParser();
 
             var pipeline = parser.Parse(_testDocument).First();
 
