@@ -51,13 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CCParserTest.cs" />
+    <Compile Include="CC\CCParserTest.cs" />
     <Compile Include="ConfigTest.cs" />
+    <Compile Include="CoreTests.cs" />
     <Compile Include="PipelineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="testcc.xml">
+    <Content Include="CC\testcc.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>

@@ -63,5 +63,13 @@ namespace Burro
         public YamlSequenceNode RawConfig { get; private set; }
 
         public IEnumerable<BuildServer> BuildServers { get; private set; }
+
+        public void StartMonitoring()
+        {
+            foreach (var buildServer in BuildServers)
+            {
+                buildServer.StartMonitoring();
+            }
+        }
     }
 }

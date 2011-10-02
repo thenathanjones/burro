@@ -44,13 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildServers\BuildServer.cs" />
-    <Compile Include="BuildServers\CruiseControlServer.cs" />
+    <Compile Include="BuildServers\CCServer.cs" />
     <Compile Include="BuildServers\GoServer.cs" />
     <Compile Include="BurroCore.cs" />
-    <Compile Include="CCParser.cs" />
+    <Compile Include="Parsers\CCParser.cs" />
     <Compile Include="Config\GoConfigParser.cs" />
-    <Compile Include="ICruiseControlParser.cs" />
-    <Compile Include="Pipeline.cs" />
+    <Compile Include="Parsers\ICCParser.cs" />
+    <Compile Include="PipelineReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
