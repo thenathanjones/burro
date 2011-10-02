@@ -4,17 +4,29 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Burro.BuildServers;
+using Moq;
 using NUnit.Framework;
+using Ninject;
 
 namespace Burro.Tests
 {
     [TestFixture]
     public class ConfigTest
     {
+        private Mock<IBuildServer> _testServer;
+        private IKernel _kernel;
+
+        [SetUp]
+        public void Setup()
+        {
+            _testServer = new Mock<IBuildServer>();
+            _kernel = new StandardKernel();
+        }
+
         [Test]
         public void LoadsConfigAsYaml()
         {
-            var core = new BurroCore();
+            var core = _kernel.Get<BurroCore>();
             core.Initialise("Config\\blank.yml");
             Assert.IsNotNull(core.RawConfig);
         }
@@ -22,7 +34,7 @@ namespace Burro.Tests
         [Test]
         public void LoadsBuildServersFromYaml()
         {
-            var core = new BurroCore();
+            var core = _kernel.Get<BurroCore>();
             core.Initialise("Config\\buildservers.yml");
             Assert.IsNotNull(core.BuildServers);
             Assert.AreEqual(2, core.BuildServers.Count());
@@ -33,7 +45,7 @@ namespace Burro.Tests
         [Test]
         public void ParsesGoServerCorrectly()
         {
-            var core = new BurroCore();
+            var core = _kernel.Get<BurroCore>();
             core.Initialise("Config\\goserver.yml");
             Assert.IsNotNull(core.BuildServers);
             Assert.AreEqual(1, core.BuildServers.Count());

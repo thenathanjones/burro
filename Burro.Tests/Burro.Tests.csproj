@@ -34,6 +34,7 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL" />
     <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CC\CCParserTest.cs" />
     <Compile Include="ConfigTest.cs" />
+    <Compile Include="Config\TestConfigParser.cs" />
     <Compile Include="CoreTests.cs" />
     <Compile Include="PipelineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +75,7 @@
     <Content Include="Config\goserver.yml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Config\startmonitoring.yml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

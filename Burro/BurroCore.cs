@@ -17,6 +17,12 @@ namespace Burro
             return config.Children[new YamlScalarNode(key)].ToString();
         }
 
+        [Inject]
+        public BurroCore(IKernel kernel)
+        {
+            _kernel = kernel;
+        }
+
         public void Initialise(string pathToConfig)
         {
             LoadConfig(pathToConfig);
@@ -34,10 +40,9 @@ namespace Burro
 
             var serverType = ExtractValue(config, "servertype");
             var typeName = "Burro.Config." + serverType + "ConfigParser";
+            var parserType = Type.GetType(typeName);
 
-            _kernel.Bind<IConfigParser>().To(Type.GetType(typeName));
-
-            return _kernel.Get<IConfigParser>().Parse(config);
+            return ((IConfigParser) _kernel.Get(parserType)).Parse(config);
         }
 
         private void LoadConfig(string pathToConfig)
@@ -69,6 +74,6 @@ namespace Burro
             }
         }
 
-        private readonly IKernel _kernel = new StandardKernel();
+        private readonly IKernel _kernel;
     }
 }

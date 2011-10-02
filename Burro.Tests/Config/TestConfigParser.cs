@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Moq;
 using Burro.BuildServers;
+using Ninject;
 using YamlDotNet.RepresentationModel;
 
 namespace Burro.Config
