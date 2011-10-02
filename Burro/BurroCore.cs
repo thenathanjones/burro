@@ -13,7 +13,7 @@ namespace Burro
     {
         public static string ExtractValue(YamlMappingNode config, string key)
         {
-            return config.Children.First(c => c.Key.ToString() == key).Value.ToString();
+            return config.Children[new YamlScalarNode(key)].ToString();
         }
 
         public void Initialise(string pathToConfig)
@@ -37,7 +37,7 @@ namespace Burro
                 case "Go":
                     return GoConfigParser.Parse(buildServer);
                 case "CruiseControl":
-                    return new CruiseControlServer();
+                    return new CCServer();
                 default:
                     throw new ArgumentException(serverType + " is not a valid build server type");
             }
