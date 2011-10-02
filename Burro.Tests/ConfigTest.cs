@@ -43,6 +43,8 @@ namespace Burro.Tests
             Assert.AreEqual("http://goserver.localdomain:8153/go", goServer.URL);
             Assert.AreEqual("ci", goServer.Username);
             Assert.AreEqual("secret", goServer.Password);
+            Assert.IsNotNull(goServer.Pipelines);
+            Assert.AreEqual(2, goServer.Pipelines.Count());
         }
     }
 }
