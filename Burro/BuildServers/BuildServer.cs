@@ -7,9 +7,9 @@ namespace Burro.BuildServers
 {
     public abstract class BuildServer
     {
-        public IEnumerable<Pipeline> Pipelines { get; internal set; } 
+        public IEnumerable<PipelineReport> Pipelines { get; internal set; } 
 
-        public event Action<IEnumerable<Pipeline>> PipelinesUpdated;
+        public event Action<IEnumerable<PipelineReport>> PipelinesUpdated;
 
         internal void OnPipelinesUpdated()
         {

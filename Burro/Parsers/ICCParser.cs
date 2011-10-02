@@ -5,6 +5,6 @@ namespace Burro.Parsers
 {
     public interface ICCParser
     {
-        IEnumerable<Pipeline> Parse(XDocument sampleDocument);
+        IEnumerable<PipelineReport> Parse(XDocument sampleDocument);
     }
 }

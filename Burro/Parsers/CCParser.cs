@@ -8,11 +8,11 @@ namespace Burro.Parsers
 {
     public class CCParser : ICCParser
     {
-        public IEnumerable<Pipeline> Parse(XDocument sampleDocument)
+        public IEnumerable<PipelineReport> Parse(XDocument sampleDocument)
         {
             var projects = sampleDocument.Descendants("Project");
 
-            return projects.Select(p => new Pipeline()
+            return projects.Select(p => new PipelineReport()
             {
                 Name = p.Attribute("name").Value,
                 Activity = ParseActivity(p.Attribute("activity").Value),
