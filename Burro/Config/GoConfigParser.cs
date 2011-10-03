@@ -9,7 +9,7 @@ using YamlDotNet.RepresentationModel;
 
 namespace Burro.Config
 {
-    internal class GoConfigParser : IConfigParser
+    public class GoConfigParser : IConfigParser
     {
         private readonly IKernel _kernel;
 

@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CC\CCParserTest.cs" />
     <Compile Include="ConfigTest.cs" />
+    <Compile Include="Config\GoConfigParserTest.cs" />
     <Compile Include="Config\TestConfigParser.cs" />
     <Compile Include="CoreTests.cs" />
     <Compile Include="PipelineTest.cs" />

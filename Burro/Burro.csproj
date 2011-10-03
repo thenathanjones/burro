@@ -58,6 +58,7 @@
     <Compile Include="Parsers\ICruiseControlParser.cs" />
     <Compile Include="PipelineReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\BurroUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -7,11 +7,13 @@ using Burro.BuildServers;
 using Ninject;
 using YamlDotNet.RepresentationModel;
 
-namespace Burro.Config
+// ReSharper disable CheckNamespace
+namespace Burro.Config // Needs this namespace to resolve correctly
+// ReSharper restore CheckNamespace
 {
     public class TestConfigParser : IConfigParser
     {
-        private IKernel _kernel;
+        private readonly IKernel _kernel;
 
         [Inject]
         public TestConfigParser(IKernel kernel)

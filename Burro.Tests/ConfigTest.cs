@@ -41,22 +41,5 @@ namespace Burro.Tests
             Assert.IsInstanceOf<GoServer>(core.BuildServers.First());
             Assert.IsInstanceOf<CruiseControlServer>(core.BuildServers.ElementAt(1));
         }
-
-        [Test]
-        public void ParsesGoServerCorrectly()
-        {
-            var core = _kernel.Get<BurroCore>();
-            core.Initialise("Config\\goserver.yml");
-            Assert.IsNotNull(core.BuildServers);
-            Assert.AreEqual(1, core.BuildServers.Count());
-
-            var goServer = core.BuildServers.First() as GoServer;
-            Assert.IsNotNull(goServer);
-            Assert.AreEqual("http://goserver.localdomain:8153/go", goServer.URL);
-            Assert.AreEqual("ci", goServer.Username);
-            Assert.AreEqual("secret", goServer.Password);
-            Assert.IsNotNull(goServer.Pipelines);
-            Assert.AreEqual(2, goServer.Pipelines.Count());
-        }
     }
 }
