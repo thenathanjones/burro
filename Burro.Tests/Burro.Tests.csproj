@@ -75,7 +75,9 @@
     <Content Include="Config\goserver.yml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Config\startmonitoring.yml" />
+    <Content Include="Config\startmonitoring.yml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

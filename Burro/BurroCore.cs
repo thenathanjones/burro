@@ -6,6 +6,7 @@ using System.Text;
 using Burro.BuildServers;
 using Burro.Config;
 using Ninject;
+using Ninject.Parameters;
 using YamlDotNet.RepresentationModel;
 
 namespace Burro
@@ -40,9 +41,14 @@ namespace Burro
 
             var serverType = ExtractValue(config, "servertype");
             var typeName = "Burro.Config." + serverType + "ConfigParser";
-            var parserType = Type.GetType(typeName);
+            var parserType = GetTypeFromName(typeName);
 
             return ((IConfigParser) _kernel.Get(parserType)).Parse(config);
+        }
+
+        private Type GetTypeFromName(string typeName)
+        {
+            return AppDomain.CurrentDomain.GetAssemblies().AsEnumerable().SelectMany(a => a.GetTypes()).Single(t => t.FullName == typeName);
         }
 
         private void LoadConfig(string pathToConfig)

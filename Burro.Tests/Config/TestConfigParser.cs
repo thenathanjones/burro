@@ -11,11 +11,17 @@ namespace Burro.Config
 {
     public class TestConfigParser : IConfigParser
     {
+        private IKernel _kernel;
+
+        [Inject]
+        public TestConfigParser(IKernel kernel)
+        {
+            _kernel = kernel;
+        }
+
         public IBuildServer Parse(YamlMappingNode config)
         {
-            var serverMock = new Mock<IBuildServer>();
-
-            return serverMock.Object;
+            return _kernel.Get<IBuildServer>("TestBuildServer");
         }
     }
 }

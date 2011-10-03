@@ -32,12 +32,15 @@ namespace Burro.Tests
         }
 
         [Test]
-        public void StartCallsStartOnAllBuildServers()
+        public void StartCallsStartOnBuildServers()
         {
+            _kernel.Bind<IBuildServer>().ToConstant(_testServer.Object).Named("TestBuildServer");
             var core = _kernel.Get<BurroCore>();
-            core.Initialise("Config\\buildservers.yml");
+            core.Initialise("Config\\startmonitoring.yml");
 
+            _testServer.Verify(ts => ts.StartMonitoring(), Times.Never());
             core.StartMonitoring();
+            _testServer.Verify(ts => ts.StartMonitoring(), Times.Once());
         }
     }
 }
