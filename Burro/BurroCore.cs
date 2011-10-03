@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Burro.BuildServers;
 using Burro.Config;
+using Burro.Util;
 using Ninject;
 using Ninject.Parameters;
 using YamlDotNet.RepresentationModel;
@@ -13,11 +14,6 @@ namespace Burro
 {
     public class BurroCore
     {
-        public static string ExtractValue(YamlMappingNode config, string key)
-        {
-            return config.Children[new YamlScalarNode(key)].ToString();
-        }
-
         [Inject]
         public BurroCore(IKernel kernel)
         {
@@ -39,16 +35,11 @@ namespace Burro
         {
             var config = yamlNode as YamlMappingNode;
 
-            var serverType = ExtractValue(config, "servertype");
+            var serverType = BurroUtils.ExtractValue(config, "servertype");
             var typeName = "Burro.Config." + serverType + "ConfigParser";
-            var parserType = GetTypeFromName(typeName);
+            var parserType = BurroUtils.GetTypeFromName(typeName);
 
             return ((IConfigParser) _kernel.Get(parserType)).Parse(config);
-        }
-
-        private Type GetTypeFromName(string typeName)
-        {
-            return AppDomain.CurrentDomain.GetAssemblies().AsEnumerable().SelectMany(a => a.GetTypes()).Single(t => t.FullName == typeName);
         }
 
         private void LoadConfig(string pathToConfig)
