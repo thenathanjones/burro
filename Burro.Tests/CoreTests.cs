@@ -42,5 +42,17 @@ namespace Burro.Tests
             core.StartMonitoring();
             _testServer.Verify(ts => ts.StartMonitoring(), Times.Once());
         }
+
+        [Test]
+        public void StopCallsStopOnBuildServers()
+        {
+            _kernel.Bind<IBuildServer>().ToConstant(_testServer.Object).Named("TestBuildServer");
+            var core = _kernel.Get<BurroCore>();
+            core.Initialise("Config\\startmonitoring.yml");
+
+            _testServer.Verify(ts => ts.StopMonitoring(), Times.Never());
+            core.StopMonitoring();
+            _testServer.Verify(ts => ts.StopMonitoring(), Times.Once());
+        }
     }
 }

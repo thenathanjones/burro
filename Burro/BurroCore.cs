@@ -81,5 +81,13 @@ namespace Burro
         }
 
         private readonly IKernel _kernel;
+
+        public void StopMonitoring()
+        {
+            foreach (var buildServer in BuildServers)
+            {
+                buildServer.StopMonitoring();
+            }
+        }
     }
 }
