@@ -33,11 +33,13 @@ namespace Burro.Tests.Config
 
             var goServer = parser.Parse(config) as GoServer;
             Assert.IsNotNull(goServer);
-            Assert.AreEqual("http://goserver.localdomain:8153/go", goServer.URL);
-            Assert.AreEqual("ci", goServer.Username);
-            Assert.AreEqual("secret", goServer.Password);
-            Assert.IsNotNull(goServer.Pipelines);
-            Assert.AreEqual(2, goServer.Pipelines.Count());
+            Assert.IsNotNull(goServer.Config);
+            var goServerConfig = goServer.Config;
+            Assert.AreEqual("http://goserver.localdomain:8153/go", goServerConfig.URL);
+            Assert.AreEqual("ci", goServerConfig.Username);
+            Assert.AreEqual("secret", goServerConfig.Password);
+            Assert.IsNotNull(goServerConfig.Pipelines);
+            Assert.AreEqual(2, goServerConfig.Pipelines.Count());
         }
     }
 }

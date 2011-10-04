@@ -52,7 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CC\CCParserTest.cs" />
+    <Compile Include="CruiseControl\CruiseControlParserTest.cs" />
     <Compile Include="ConfigTest.cs" />
     <Compile Include="Config\GoConfigParserTest.cs" />
     <Compile Include="Config\TestConfigParser.cs" />
@@ -61,7 +61,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CC\testcc.xml">
+    <Content Include="CruiseControl\testcc.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>

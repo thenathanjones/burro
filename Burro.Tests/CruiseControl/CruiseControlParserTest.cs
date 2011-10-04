@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using Burro.Parsers;
 using NUnit.Framework;
 
-namespace Burro.Tests.CC
+namespace Burro.Tests.CruiseControl
 {
     [TestFixture]
     public class CruiseControlParserTest
@@ -33,7 +33,7 @@ namespace Burro.Tests.CC
         [Test]
         public void ReadsStreamAsXML()
         {
-            var testInput = File.Open("CC\\testcc.xml", FileMode.Open);
+            var testInput = File.Open("CruiseControl\\testcc.xml", FileMode.Open);
 
             var parser = new CruiseControlParser();
             var loadedDocument = parser.LoadStream(testInput);

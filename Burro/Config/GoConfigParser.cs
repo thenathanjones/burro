@@ -21,13 +21,18 @@ namespace Burro.Config
 
         public IBuildServer Parse(YamlMappingNode config)
         {
-            var parser = _kernel.Get<GoServer>();
-            parser.URL = BurroUtils.ExtractValue(config, "url");
-            parser.Username = BurroUtils.ExtractValue(config, "username");
-            parser.Password = BurroUtils.ExtractValue(config, "password");
-            parser.Pipelines = ParsePipelines(config);
+            var server = _kernel.Get<GoServer>();
+            var serverConfig = new GoServerConfig()
+                                   {
+                                       URL = BurroUtils.ExtractValue(config, "url"),
+                                       Username = BurroUtils.ExtractValue(config, "username"),
+                                       Password = BurroUtils.ExtractValue(config, "password"),
+                                       Pipelines = ParsePipelines(config)
+                                   };
 
-            return parser;
+            server.Config = serverConfig;
+
+            return server;
         }
 
         private IEnumerable<string> ParsePipelines(YamlMappingNode config)
@@ -41,5 +46,5 @@ namespace Burro.Config
         {
             return yamlMappingNode.Children[new YamlScalarNode("name")].ToString();
         }
-    }
+    }   
 }
