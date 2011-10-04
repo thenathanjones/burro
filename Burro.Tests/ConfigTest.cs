@@ -13,13 +13,11 @@ namespace Burro.Tests
     [TestFixture]
     public class ConfigTest
     {
-        private Mock<IBuildServer> _testServer;
         private IKernel _kernel;
 
         [SetUp]
         public void Setup()
         {
-            _testServer = new Mock<IBuildServer>();
             _kernel = new StandardKernel();
         }
 
