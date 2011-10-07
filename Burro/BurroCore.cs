@@ -28,7 +28,7 @@ namespace Burro
 
         private void ParseConfig()
         {
-            BuildServers = RawConfig.Children.Select(ParseBuildServer);
+            BuildServers = RawConfig.Children.Select(ParseBuildServer).ToArray();
         }
 
         private IBuildServer ParseBuildServer(YamlNode yamlNode)

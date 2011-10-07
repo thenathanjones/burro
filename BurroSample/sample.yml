@@ -1,0 +1,11 @@
+﻿  # YAML file for parsing a Go Build Server
+  -
+    servertype: Go
+    url: http://goserver.localdomain:8153/go
+    username: ci
+    password: secret
+    pipelines:
+      -
+        name: CI-Trunk
+      - 
+        name: Sonar

@@ -2,18 +2,21 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8B3508EF-2EF9-4EDD-A20C-2D88AC96F4F9}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{4117C58C-CF36-4F3C-8DC1-79007395CEB0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Burro</RootNamespace>
-    <AssemblyName>Burro</AssemblyName>
+    <RootNamespace>BurroSample</RootNamespace>
+    <AssemblyName>BurroSample</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,7 +25,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,34 +45,24 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="YamlDotNet.Core">
-      <HintPath>..\packages\YamlDotNet.Core.1.1.7\lib\YamlDotNet.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="YamlDotNet.RepresentationModel, Version=0.2.4286.24170, Culture=neutral, PublicKeyToken=2b53052c5884d7a1, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.RepresentationModel.1.1.7\lib\YamlDotNet.RepresentationModel.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildServers\BuildServer.cs" />
-    <Compile Include="BuildServers\CruiseControlServer.cs" />
-    <Compile Include="BuildServers\GoServer.cs" />
-    <Compile Include="BuildServers\IBuildServer.cs" />
-    <Compile Include="BurroCore.cs" />
-    <Compile Include="Config\Parsers\CruiseControlConfigParser.cs" />
-    <Compile Include="Config\GoServerConfig.cs" />
-    <Compile Include="Config\IConfig.cs" />
-    <Compile Include="Config\Parsers\IConfigParser.cs" />
-    <Compile Include="Parsers\CruiseControlParser.cs" />
-    <Compile Include="Config\Parsers\GoConfigParser.cs" />
-    <Compile Include="Parsers\IParser.cs" />
-    <Compile Include="PipelineReport.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\BurroUtils.cs" />
-    <Compile Include="Util\ITimer.cs" />
-    <Compile Include="Util\TimersTimer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Content Include="sample.yml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Burro\Burro.csproj">
+      <Project>{8B3508EF-2EF9-4EDD-A20C-2D88AC96F4F9}</Project>
+      <Name>Burro</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

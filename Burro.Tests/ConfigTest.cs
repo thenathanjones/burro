@@ -31,7 +31,7 @@ namespace Burro.Tests
             Assert.IsNotNull(core.RawConfig);
         }
 
-        [Test]
+        [Test(Description = "Integration")]
         public void LoadsBuildServersFromYaml()
         {
             var core = _kernel.Get<BurroCore>();

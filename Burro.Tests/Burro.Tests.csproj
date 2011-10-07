@@ -53,16 +53,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildServers\GoServerTest.cs" />
-    <Compile Include="CruiseControl\CruiseControlParserTest.cs" />
+    <Compile Include="Parsers\CruiseControlParserTest.cs" />
     <Compile Include="ConfigTest.cs" />
     <Compile Include="Config\GoConfigParserTest.cs" />
     <Compile Include="Config\TestConfigParser.cs" />
     <Compile Include="CoreTests.cs" />
-    <Compile Include="PipelineTest.cs" />
+    <Compile Include="PipelineReportTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CruiseControl\testcc.xml">
+    <Content Include="Parsers\testcc.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
