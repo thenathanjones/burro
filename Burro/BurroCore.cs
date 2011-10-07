@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Burro.BuildServers;
 using Burro.Config;
+using Burro.Config.Parsers;
 using Burro.Util;
 using Ninject;
 using Ninject.Parameters;
@@ -36,7 +37,7 @@ namespace Burro
             var config = yamlNode as YamlMappingNode;
 
             var serverType = BurroUtils.ExtractValue(config, "servertype");
-            var typeName = "Burro.Config." + serverType + "ConfigParser";
+            var typeName = "Burro.Config.Parsers." + serverType + "ConfigParser";
             var parserType = BurroUtils.GetTypeFromName(typeName);
 
             return ((IConfigParser) _kernel.Get(parserType)).Parse(config);

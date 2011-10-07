@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildServers\GoServerTest.cs" />
     <Compile Include="CruiseControl\CruiseControlParserTest.cs" />
     <Compile Include="ConfigTest.cs" />
     <Compile Include="Config\GoConfigParserTest.cs" />

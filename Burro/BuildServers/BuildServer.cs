@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Burro.Config;
 
 namespace Burro.BuildServers
 {
@@ -12,7 +13,9 @@ namespace Burro.BuildServers
             if (PipelinesUpdated != null) PipelinesUpdated(PipelineReports);
         }
 
-        public IEnumerable<PipelineReport> PipelineReports { get; internal set; }
+        public IEnumerable<PipelineReport> PipelineReports { get; protected set; }
+
+        public IConfig Config { get; protected set; }
 
         public event Action<IEnumerable<PipelineReport>> PipelinesUpdated;
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Burro.Config
 {
-    public class GoServerConfig
+    public class GoServerConfig : IConfig
     {
         public string URL { get; set; }
 

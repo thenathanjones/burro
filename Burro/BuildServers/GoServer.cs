@@ -3,21 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Burro.Config;
+using Burro.Parsers;
+using Burro.Util;
 
 namespace Burro.BuildServers
 {
     public class GoServer : BuildServer
     {
-        public GoServerConfig Config { get; set; }
+        private readonly ITimer _timer;
+        private readonly IParser _parser;
+
+        public GoServer(ITimer timer, IParser parser)
+        {
+            _timer = timer;
+            _parser = parser;
+        }
+
+        public void Initialise(IConfig config)
+        {
+            Config = config;
+
+            _parser.Initialise(Config);
+            _timer.Tick += () =>
+                               {
+                                   PipelineReports = _parser.GetPipelines();
+                                   OnPipelinesUpdated();
+                               };
+        }
 
         public override void StartMonitoring()
         {
-            // TODO
+            _timer.Start();
         }
 
         public override void StopMonitoring()
         {
-            // TODO
+            _timer.Stop();
         }
     }
 }

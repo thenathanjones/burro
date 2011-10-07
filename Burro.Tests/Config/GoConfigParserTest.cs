@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Burro.BuildServers;
 using Burro.Config;
+using Burro.Config.Parsers;
 using NUnit.Framework;
 using Ninject;
 using YamlDotNet.RepresentationModel;

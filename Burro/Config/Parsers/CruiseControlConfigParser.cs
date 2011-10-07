@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Burro.BuildServers;
+﻿using Burro.BuildServers;
 using YamlDotNet.RepresentationModel;
 
-namespace Burro.Config
+namespace Burro.Config.Parsers
 {
     public class CruiseControlConfigParser : IConfigParser
     {

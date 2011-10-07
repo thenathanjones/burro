@@ -2,12 +2,42 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Xml.Linq;
+using Burro.Config;
 
 namespace Burro.Parsers
 {
-    public class CruiseControlParser : ICruiseControlParser
+    public class CruiseControlParser : IParser
     {
+        private IConfig _config;
+
+        public void Initialise(IConfig config)
+        {
+            _config = config;
+        }
+
+        public IEnumerable<PipelineReport> GetPipelines()
+        {
+            var stream = GetStream(_config.URL, _config.Username, _config.Password);
+
+            var streamDoc = LoadStream(stream);
+
+            return Parse(streamDoc);
+        }
+
+        private Stream GetStream(string url, string username, string password)
+        {
+            var request = WebRequest.Create(url);
+            
+            if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
+            {
+                request.Credentials = new NetworkCredential(username, password);
+            }
+
+            return request.GetResponse().GetResponseStream();
+        }
+
         public IEnumerable<PipelineReport> Parse(XDocument sampleDocument)
         {
             var projects = sampleDocument.Descendants("Project");

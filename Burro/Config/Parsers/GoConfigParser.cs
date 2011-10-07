@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Burro.BuildServers;
 using Burro.Util;
 using Ninject;
 using YamlDotNet.RepresentationModel;
 
-namespace Burro.Config
+namespace Burro.Config.Parsers
 {
     public class GoConfigParser : IConfigParser
     {
@@ -30,7 +28,7 @@ namespace Burro.Config
                                        Pipelines = ParsePipelines(config)
                                    };
 
-            server.Config = serverConfig;
+            server.Initialise(serverConfig);
 
             return server;
         }
