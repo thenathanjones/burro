@@ -25,9 +25,10 @@ namespace Burro.Tests
         [Test]
         public void InitialisationLoadsBuildServers()
         {
+            _kernel.Bind<IBuildServer>().ToConstant(_testServer.Object).Named("TestBuildServer");
             var core = _kernel.Get<BurroCore>();
             Assert.IsNull(core.BuildServers);
-            core.Initialise("Config\\buildservers.yml");
+            core.Initialise("Config\\testbuildservers.yml");
             Assert.AreEqual(2, core.BuildServers.Count());
         }
 

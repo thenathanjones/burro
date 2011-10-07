@@ -9,7 +9,7 @@ using Ninject;
 using YamlDotNet.RepresentationModel;
 
 // ReSharper disable CheckNamespace
-namespace Burro.Config // Needs this namespace to resolve correctly
+namespace Burro.Config.Parsers // Needs this namespace to resolve correctly
 // ReSharper restore CheckNamespace
 {
     public class TestConfigParser : IConfigParser

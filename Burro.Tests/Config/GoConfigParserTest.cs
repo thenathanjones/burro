@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Burro.BuildServers;
-using Burro.Config;
 using Burro.Config.Parsers;
+using Burro.Parsers;
+using Burro.Util;
+using Moq;
 using NUnit.Framework;
 using Ninject;
 using YamlDotNet.RepresentationModel;
@@ -20,6 +22,9 @@ namespace Burro.Tests.Config
             var kernel = new StandardKernel();
 
             var parser = kernel.Get<GoConfigParser>();
+
+            kernel.Bind<ITimer>().ToConstant(new Mock<ITimer>().Object);
+            kernel.Bind<IParser>().ToConstant(new Mock<IParser>().Object);
 
             var config = new YamlMappingNode
                              {

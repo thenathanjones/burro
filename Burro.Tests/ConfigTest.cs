@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Burro.BuildServers;
+using Burro.Parsers;
+using Burro.Util;
 using Moq;
 using NUnit.Framework;
 using Ninject;
@@ -33,6 +35,8 @@ namespace Burro.Tests
         public void LoadsBuildServersFromYaml()
         {
             var core = _kernel.Get<BurroCore>();
+            _kernel.Bind<ITimer>().ToConstant(new Mock<ITimer>().Object);
+            _kernel.Bind<IParser>().ToConstant(new Mock<IParser>().Object);
             core.Initialise("Config\\buildservers.yml");
             Assert.IsNotNull(core.BuildServers);
             Assert.AreEqual(2, core.BuildServers.Count());

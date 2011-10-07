@@ -8,7 +8,6 @@ using Burro.Config;
 using Burro.Config.Parsers;
 using Burro.Util;
 using Ninject;
-using Ninject.Parameters;
 using YamlDotNet.RepresentationModel;
 
 namespace Burro

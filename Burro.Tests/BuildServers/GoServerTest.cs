@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Burro.BuildServers;
+using Burro.Parsers;
 using Burro.Util;
 using Moq;
 using NUnit.Framework;
@@ -25,7 +26,9 @@ namespace Burro.Tests.BuildServers
         public void StartsTimer()
         {
             var timer = new Mock<ITimer>();
+            var parser = new Mock<IParser>();
             _kernel.Bind<ITimer>().ToConstant(timer.Object);
+            _kernel.Bind<IParser>().ToConstant(parser.Object);
             var goServer = _kernel.Get<GoServer>();
             timer.Verify(t => t.Start(), Times.Never());
             goServer.StartMonitoring();
