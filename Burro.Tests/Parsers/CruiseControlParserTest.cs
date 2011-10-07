@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using Burro.Parsers;
 using NUnit.Framework;
 
-namespace Burro.Tests.CruiseControl
+namespace Burro.Tests.Parsers
 {
     [TestFixture]
     public class CruiseControlParserTest
