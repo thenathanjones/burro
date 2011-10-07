@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Burro.Tests
 {
     [TestFixture]
-    public class PipelineTest
+    public class PipelineReportTest
     {
         [Test]
         public void HasAName()

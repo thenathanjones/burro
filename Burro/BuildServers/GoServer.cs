@@ -5,6 +5,7 @@ using System.Text;
 using Burro.Config;
 using Burro.Parsers;
 using Burro.Util;
+using Ninject;
 
 namespace Burro.BuildServers
 {
@@ -13,6 +14,7 @@ namespace Burro.BuildServers
         private readonly ITimer _timer;
         private readonly IParser _parser;
 
+        [Inject]
         public GoServer(ITimer timer, IParser parser)
         {
             _timer = timer;
