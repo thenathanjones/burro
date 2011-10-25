@@ -68,6 +68,7 @@
     <Compile Include="Util\TimersTimer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Burro.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -22,7 +22,7 @@ namespace BurroSample
     {
         public BurroSampleApp()
         {
-            const string configFile = "sample.yml";
+            const string configFile = "vagrant.yml";
             var kernel = new StandardKernel();
 
             var timer = new TimersTimer(new TimeSpan(0, 0, 5));
@@ -33,9 +33,17 @@ namespace BurroSample
             var core = kernel.Get<BurroCore>();
             core.Initialise(configFile);
 
+            core.BuildServers.First().PipelinesUpdated += (p) =>
+            {
+                Console.WriteLine(p.Count());
+            };
+
             core.StartMonitoring();
 
-            Thread.Sleep(new TimeSpan(0,2,0));
+
+            while (true)
+            {
+            }
         }
     }
 }
