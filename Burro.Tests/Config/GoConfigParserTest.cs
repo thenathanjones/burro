@@ -24,7 +24,7 @@ namespace Burro.Tests.Config
             var parser = kernel.Get<GoConfigParser>();
 
             kernel.Bind<ITimer>().ToConstant(new Mock<ITimer>().Object);
-            kernel.Bind<IParser>().ToConstant(new Mock<IParser>().Object);
+            kernel.Bind<IParser>().ToConstant(new Mock<IParser>().Object).Named("Go");
 
             var config = new YamlMappingNode
                              {

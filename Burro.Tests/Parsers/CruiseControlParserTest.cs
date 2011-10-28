@@ -33,7 +33,7 @@ namespace Burro.Tests.Parsers
         [Test]
         public void ReadsStreamAsXML()
         {
-            var testInput = File.Open("CruiseControl\\testcc.xml", FileMode.Open);
+            var testInput = File.Open("Parsers\\testcc.xml", FileMode.Open);
 
             var parser = new CruiseControlParser();
             var loadedDocument = parser.LoadStream(testInput);

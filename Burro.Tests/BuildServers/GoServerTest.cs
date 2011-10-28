@@ -28,7 +28,7 @@ namespace Burro.Tests.BuildServers
             var timer = new Mock<ITimer>();
             var parser = new Mock<IParser>();
             _kernel.Bind<ITimer>().ToConstant(timer.Object);
-            _kernel.Bind<IParser>().ToConstant(parser.Object);
+            _kernel.Bind<IParser>().ToConstant(parser.Object).Named("Go");
             var goServer = _kernel.Get<GoServer>();
             timer.Verify(t => t.Start(), Times.Never());
             goServer.StartMonitoring();
