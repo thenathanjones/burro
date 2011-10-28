@@ -13,7 +13,7 @@ using Burro.Parsers;
 
 namespace Burro
 {
-    public class BurroCore
+    public class BurroCore : IBurroCore
     {
         [Inject]
         public BurroCore(IKernel kernel)
