@@ -35,7 +35,7 @@ namespace BurroSample
 
             core.BuildServers.First().PipelinesUpdated += (p) =>
             {
-                Console.WriteLine(p.Count());
+                Console.WriteLine("" + DateTime.Now + "-" + p.Count());
             };
 
             core.StartMonitoring();

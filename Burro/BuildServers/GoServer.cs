@@ -15,7 +15,7 @@ namespace Burro.BuildServers
         private readonly IParser _parser;
 
         [Inject]
-        public GoServer(ITimer timer, IParser parser)
+        public GoServer(ITimer timer, [Named("Go")] IParser parser)
         {
             _timer = timer;
             _parser = parser;

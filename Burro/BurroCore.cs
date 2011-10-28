@@ -9,6 +9,7 @@ using Burro.Config.Parsers;
 using Burro.Util;
 using Ninject;
 using YamlDotNet.RepresentationModel;
+using Burro.Parsers;
 
 namespace Burro
 {
@@ -22,8 +23,19 @@ namespace Burro
 
         public void Initialise(string pathToConfig)
         {
+            SetDefaults();
             LoadConfig(pathToConfig);
             ParseConfig();
+        }
+
+        private void SetDefaults()
+        {
+            var parserBindings = _kernel.GetBindings(typeof(IParser));
+
+            if (!parserBindings.Any(p => p.Metadata.Name == "Go"))
+            {
+                _kernel.Bind<IParser>().To<CruiseControlParser>().Named("Go");
+            }
         }
 
         private void ParseConfig()

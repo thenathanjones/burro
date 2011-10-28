@@ -6,6 +6,7 @@ using Burro.BuildServers;
 using Moq;
 using NUnit.Framework;
 using Ninject;
+using Burro.Parsers;
 
 namespace Burro.Tests
 {
@@ -54,6 +55,29 @@ namespace Burro.Tests
             _testServer.Verify(ts => ts.StopMonitoring(), Times.Never());
             core.StopMonitoring();
             _testServer.Verify(ts => ts.StopMonitoring(), Times.Once());
+        }
+
+        [Test]
+        public void ConfiguresDefaultParsers()
+        {
+            _kernel.Bind<IBuildServer>().ToConstant(_testServer.Object).Named("TestBuildServer");
+            var core = _kernel.Get<BurroCore>();
+            core.Initialise("Config\\startmonitoring.yml");
+
+            Assert.IsInstanceOf<CruiseControlParser>(_kernel.Get<IParser>("Go"));
+        }
+
+        [Test]
+        public void AllowsOverrides()
+        {
+            var parser = new Mock<IParser>();
+            _kernel.Bind<IParser>().ToConstant(parser.Object).Named("Go");
+
+            _kernel.Bind<IBuildServer>().ToConstant(_testServer.Object).Named("TestBuildServer");
+            var core = _kernel.Get<BurroCore>();
+            core.Initialise("Config\\startmonitoring.yml");
+
+            Assert.AreEqual(parser.Object, _kernel.Get<IParser>("Go"));
         }
     }
 }
