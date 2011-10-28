@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Burro.BuildServers;
 namespace Burro
 {
-    interface IBurroCore
+    public interface IBurroCore
     {
         IEnumerable<IBuildServer> BuildServers { get; }
         void Initialise(string pathToConfig);
