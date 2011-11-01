@@ -42,7 +42,9 @@ namespace Burro.Parsers
         {
             var projects = sampleDocument.Descendants("Project");
 
-            return projects.Select(p => new PipelineReport()
+            var observedProjects = projects.Where(p => _config.Pipelines.Contains(p.Attribute("name").Value));
+
+            return observedProjects.Select(p => new PipelineReport()
             {
                 Name = p.Attribute("name").Value,
                 Activity = ParseActivity(p.Attribute("activity").Value),
