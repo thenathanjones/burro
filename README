@@ -1,8 +1,0 @@
-Why do this?
-Why not?  Actually, it stemmed from the fact I wanted a .NET build monitor.  
-
-Surely this exists?
-If it does, Google is having trouble finding it at of the 18th of September 2011.  I've used Greenscreen (Ruby) and BigVisibleWall (Scala) but wanted a .NET version to tie in with the USB library I'd written (see nusb).
-
-How do I use this?
-I'll put some examples up as things progress, for now you'll just have to work it out yourself.
