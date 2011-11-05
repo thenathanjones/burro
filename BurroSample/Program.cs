@@ -28,8 +28,6 @@ namespace BurroSample
             var timer = new TimersTimer(new TimeSpan(0, 0, 5));
             kernel.Bind<ITimer>().ToConstant(timer);
 
-            kernel.Bind<IParser>().To<CruiseControlParser>();
-
             var core = kernel.Get<BurroCore>();
             core.Initialise(configFile);
 
