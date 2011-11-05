@@ -5,12 +5,20 @@ using System.Linq;
 using System.Net;
 using System.Xml.Linq;
 using Burro.Config;
+using Burro.Util;
 
 namespace Burro.Parsers
 {
     public class CruiseControlParser : IParser
     {
         private IConfig _config;
+
+        private IWebRequest _request;
+
+        public CruiseControlParser(IWebRequest request)
+        {
+            _request = request;
+        }
 
         public void Initialise(IConfig config)
         {
@@ -28,14 +36,14 @@ namespace Burro.Parsers
 
         private Stream GetStream(string url, string username, string password)
         {
-            var request = WebRequest.Create(url);
+            _request.Create(url);
             
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
-                request.Credentials = new NetworkCredential(username, password);
+                _request.SetCredentials(username, password);
             }
 
-            return request.GetResponse().GetResponseStream();
+            return _request.GetResponseStream();
         }
 
         public IEnumerable<PipelineReport> Parse(XDocument sampleDocument)

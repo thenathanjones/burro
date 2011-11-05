@@ -1,7 +1,7 @@
-﻿  # YAML file for parsing a Go Build Server
+﻿  # YAML file for parsing a Cruise Control Build Server
   -
-    servertype: Go
-    url: http://10.1.1.5:8153/go/cctray.xml
+    servertype: CruiseControl
+    url: http://10.1.1.2:8153/go/cctray.xml
     username: 
     password: 
     pipelines:

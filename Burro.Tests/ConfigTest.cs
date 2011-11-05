@@ -37,6 +37,7 @@ namespace Burro.Tests
             var core = _kernel.Get<BurroCore>();
             _kernel.Bind<ITimer>().ToConstant(new Mock<ITimer>().Object);
             _kernel.Bind<IParser>().ToConstant(new Mock<IParser>().Object).Named("Go");
+            _kernel.Bind<IParser>().ToConstant(new Mock<IParser>().Object).Named("CruiseControl");
             core.Initialise("Config\\buildservers.yml");
             Assert.IsNotNull(core.BuildServers);
             Assert.AreEqual(2, core.BuildServers.Count());

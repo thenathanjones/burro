@@ -56,6 +56,7 @@
     <Compile Include="BuildServers\GoServer.cs" />
     <Compile Include="BuildServers\IBuildServer.cs" />
     <Compile Include="BurroCore.cs" />
+    <Compile Include="Config\CruiseControlServerConfig.cs" />
     <Compile Include="Config\Parsers\CruiseControlConfigParser.cs" />
     <Compile Include="Config\GoServerConfig.cs" />
     <Compile Include="Config\IConfig.cs" />
@@ -68,7 +69,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\BurroUtils.cs" />
     <Compile Include="Util\ITimer.cs" />
+    <Compile Include="Util\IWebRequest.cs" />
     <Compile Include="Util\TimersTimer.cs" />
+    <Compile Include="Util\WebRequestAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Burro.nuspec" />

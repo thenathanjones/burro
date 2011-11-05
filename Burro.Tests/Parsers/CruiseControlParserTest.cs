@@ -4,6 +4,11 @@ using System.Linq;
 using System.Xml.Linq;
 using Burro.Parsers;
 using NUnit.Framework;
+using Ninject;
+using Burro.Util;
+using Moq;
+using Burro.Config;
+using System.Collections.Generic;
 
 namespace Burro.Tests.Parsers
 {
@@ -14,9 +19,18 @@ namespace Burro.Tests.Parsers
         private XElement _testProjects;
         private XElement _testProject;
 
+        private IKernel _kernel;
+
+        private Mock<IWebRequest> _webRequest;
+        private CruiseControlServerConfig _config;
+
         [SetUp]
         public void CreateDocument()
         {
+            _kernel = new StandardKernel();
+            _webRequest = new Mock<IWebRequest>();
+            _kernel.Bind<IWebRequest>().ToConstant(_webRequest.Object);
+
             _testDocument = new XDocument();    
             _testProjects = new XElement("Projects");
             _testDocument.Add(_testProjects);
@@ -28,6 +42,12 @@ namespace Burro.Tests.Parsers
             _testProject.SetAttributeValue("lastBuildLabel", "61");
             _testProject.SetAttributeValue("lastBuildTime", "2011-09-16T01:34:36");
             _testProject.SetAttributeValue("webUrl", "http://goserver.localdomain:8153/go/pipelines/CI-ProductA/61/Build/1");
+
+            var stream = new MemoryStream();
+            _testDocument.Save(stream);
+            _webRequest.Setup(wr => wr.GetResponseStream()).Returns(stream);
+
+            _config = new CruiseControlServerConfig() { URL = "blah", Pipelines = (new string[] { "CI-ProductA :: Build" }).AsEnumerable<string>() };
         }
 
         [Test]
@@ -35,7 +55,7 @@ namespace Burro.Tests.Parsers
         {
             var testInput = File.Open("Parsers\\testcc.xml", FileMode.Open);
 
-            var parser = new CruiseControlParser();
+            var parser = _kernel.Get<CruiseControlParser>();
             var loadedDocument = parser.LoadStream(testInput);
 
             Assert.IsNotNull(loadedDocument);
@@ -50,7 +70,8 @@ namespace Burro.Tests.Parsers
                 _testProjects.Add(_testProject);
             }
 
-            var parser = new CruiseControlParser();
+            var parser = _kernel.Get<CruiseControlParser>();
+            parser.Initialise(_config);
             var pipelines = parser.Parse(_testDocument);
 
             Assert.AreEqual(3, pipelines.Count());
@@ -61,19 +82,19 @@ namespace Burro.Tests.Parsers
         {
             _testProjects.Add(_testProject);
 
-            _testProject.SetAttributeValue("name", "TestProject");
-
-            var parser = new CruiseControlParser();
+            var parser = _kernel.Get<CruiseControlParser>();
+            parser.Initialise(_config);
             var pipeline = parser.Parse(_testDocument).First();
 
-            Assert.AreEqual("TestProject", pipeline.Name);
+            Assert.AreEqual("CI-ProductA :: Build", pipeline.Name);
         }
 
         [Test]
         public void ParsesActivityCorrectly()
         {
             _testProjects.Add(_testProject);
-            var parser = new CruiseControlParser();
+            var parser = _kernel.Get<CruiseControlParser>();
+            parser.Initialise(_config);
 
             _testProject.SetAttributeValue("activity", "Sleeping");
             var pipeline = parser.Parse(_testDocument).First();
@@ -88,7 +109,8 @@ namespace Burro.Tests.Parsers
         public void ParsesLastBuildStatusCorrectly()
         {
             _testProjects.Add(_testProject);
-            var parser = new CruiseControlParser();
+            var parser = _kernel.Get<CruiseControlParser>();
+            parser.Initialise(_config);
             
             _testProject.SetAttributeValue("lastBuildStatus", "Success");
             var pipeline = parser.Parse(_testDocument).First();
@@ -103,7 +125,8 @@ namespace Burro.Tests.Parsers
         public void ParsesLinkURLCorrectly()
         {
             _testProjects.Add(_testProject);
-            var parser = new CruiseControlParser();
+            var parser = _kernel.Get<CruiseControlParser>();
+            parser.Initialise(_config);
 
             var pipeline = parser.Parse(_testDocument).First();
             Assert.AreEqual("http://goserver.localdomain:8153/go/pipelines/CI-ProductA/61/Build/1", pipeline.LinkURL);
@@ -113,11 +136,24 @@ namespace Burro.Tests.Parsers
         public void ParsesTimeDateCorrectly()
         {
             _testProjects.Add(_testProject);
-            var parser = new CruiseControlParser();
+            var parser = _kernel.Get<CruiseControlParser>();
+            parser.Initialise(_config);
 
             var pipeline = parser.Parse(_testDocument).First();
 
             Assert.AreEqual(new DateTime(2011, 9, 16, 1, 34, 36), pipeline.LastBuildTime);
+        }
+
+        [Test]
+        public void OnlyReturnsMatchingPipelines()
+        {
+            _testProjects.Add(_testProject);
+            var parser = _kernel.Get<CruiseControlParser>();
+            parser.Initialise(new CruiseControlServerConfig() { URL = "blah", Pipelines = new List<string>() });
+
+            var pipelines = parser.Parse(_testDocument);
+
+            Assert.AreEqual(0, pipelines.Count());
         }
     }
 

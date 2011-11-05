@@ -23,18 +23,28 @@ namespace Burro
 
         public void Initialise(string pathToConfig)
         {
-            SetDefaults();
+            ConfigureBindings();
             LoadConfig(pathToConfig);
             ParseConfig();
         }
 
-        private void SetDefaults()
+        private void ConfigureBindings()
         {
             var parserBindings = _kernel.GetBindings(typeof(IParser));
 
             if (!parserBindings.Any(p => p.Metadata.Name == "Go"))
             {
                 _kernel.Bind<IParser>().To<CruiseControlParser>().Named("Go");
+            }
+
+            if (!parserBindings.Any(p => p.Metadata.Name == "CruiseControl"))
+            {
+                _kernel.Bind<IParser>().To<CruiseControlParser>().Named("CruiseControl");
+            }
+
+            if (!_kernel.GetBindings(typeof(IWebRequest)).Any())
+            {
+                _kernel.Bind<IWebRequest>().To<WebRequestAdapter>();
             }
         }
 
