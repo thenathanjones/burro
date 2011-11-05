@@ -30,6 +30,7 @@ What Burro parses is configured using a YAML file that is passed in upon initial
             name: "Trunk :: spec"
 
 The structure is very simple.  At this point in time, it uses the following fields:
+
 * servertype - This is used to configure what type of server is being checked, and in turn what parser is used to interpret the output.
 * url - This is dependent on the servertype used, but is the path to the server itself.  In the case of CruiseControl-like output, it's the address of the XML output.
 * username - This is the username used to authenticate with the server.  If not required, leave this field blank.
