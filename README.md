@@ -38,7 +38,7 @@ The structure is very simple.  At this point in time, it uses the following fiel
 
 Usage
 -----
-I'll put some examples up as things progress, for now you'll just have to work it out yourself.  For a working example, see [Luces](https://github.com/thenathanjones/luces) which uses Burro to parse output which is used for the logic in controlling build lights.
+If you want to include it in your project, Burro is located on NuGet.  I'll put some examples up as things progress, for now you'll just have to work it out yourself.  For a working example, see [Luces](https://github.com/thenathanjones/luces) which uses Burro to parse output which is used for the logic in controlling build lights.
 
 Limitations
 ===========
