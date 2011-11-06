@@ -5,7 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burro", "Burro\Burro.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burro.Tests", "Burro.Tests\Burro.Tests.csproj", "{142EF049-CF53-4553-AED4-5A7D71DB2DED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurroSample", "BurroSample\BurroSample.csproj", "{4117C58C-CF36-4F3C-8DC1-79007395CEB0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3DA1E59-B2BD-4AA8-80FC-1231FD31A8BA}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burro.Sample", "Burro.Sample\Burro.Sample.csproj", "{4117C58C-CF36-4F3C-8DC1-79007395CEB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

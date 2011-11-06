@@ -8,7 +8,7 @@ using Burro.Parsers;
 using Burro.Util;
 using Ninject;
 
-namespace BurroSample
+namespace Burro.Sample
 {
     class Program
     {
