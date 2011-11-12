@@ -13,11 +13,18 @@ namespace Burro.BuildServers
             if (PipelinesUpdated != null) PipelinesUpdated(PipelineReports);
         }
 
+        internal void OnErrorParsing(Exception ex)
+        {
+            if (ErrorParsing != null) ErrorParsing(ex);
+        }
+
         public IEnumerable<PipelineReport> PipelineReports { get; protected set; }
 
         public IConfig Config { get; protected set; }
 
         public event Action<IEnumerable<PipelineReport>> PipelinesUpdated;
+
+        public event Action<Exception> ErrorParsing;
 
         public abstract void StartMonitoring();
 

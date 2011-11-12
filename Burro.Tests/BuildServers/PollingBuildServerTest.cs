@@ -7,6 +7,7 @@ using NUnit.Framework;
 using Burro.Util;
 using Burro.Parsers;
 using Moq;
+using Burro.Config;
 
 namespace Burro.Tests.BuildServers
 {
@@ -24,22 +25,30 @@ namespace Burro.Tests.BuildServers
             timer.Verify(t => t.Start(), Times.Once());
         }
 
-        //[Test]
-        //public void RaisesErrorIfProblemParsing()
-        //{
-        //    var timer = new Mock<ITimer>();
-        //    var parser = new Mock<IParser>();
+        [Test]
+        public void RaisesErrorIfProblemParsing()
+        {
+            var timer = new Mock<ITimer>();
+            var parser = new Mock<IParser>();
+            var config = new Mock<IConfig>();
 
-        //    parser.Setup(p => p.GetPipelines()).Throws(new Exception());
+            var testException = new Exception();
+            parser.Setup(p => p.GetPipelines()).Throws(testException);
 
-        //    var updated = false;
-        //    var testServer = new TestBuildServer(timer.Object, parser.Object);
-        //    testS
+            var testServer = new TestBuildServer(timer.Object, parser.Object);
+            testServer.Initialise(config.Object);
 
-        //    timer.Raise(t => t.Tick += null);
+            var errorThrown = false;
+            testServer.ErrorParsing += (thrownException) =>
+            {
+                Assert.AreSame(testException, thrownException);
+                errorThrown = true;
+            };
 
-        //    Assert.IsTrue(updated);
-        //}
+            timer.Raise(t => t.Tick += null);
+
+            Assert.IsTrue(errorThrown);
+        }
 
         private class TestBuildServer : PollingBuildServer
         {

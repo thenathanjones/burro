@@ -24,10 +24,9 @@ namespace Burro.BuildServers
                 {
                     PipelineReports = _parser.GetPipelines();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //OnError();
-                    throw;
+                    OnErrorParsing(ex);
                 }
                 OnPipelinesUpdated();
             };
