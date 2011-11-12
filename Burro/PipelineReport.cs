@@ -31,6 +31,7 @@ namespace Burro
         Unknown,
         Idle,
         Paused,
-        Busy
+        Busy,
+        Locked
     }
 }

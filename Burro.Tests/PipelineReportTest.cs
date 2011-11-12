@@ -52,10 +52,10 @@ namespace Burro.Tests
         }
 
         [Test]
-        public void ActivityHasFourStatesIncludingUnknown()
+        public void ActivityHasFiveStatesIncludingUnknown()
         {
-            Assert.AreEqual(4, Enum.GetValues(typeof(Activity)).Length);
-            Assert.IsTrue(new[] { Activity.Busy, Activity.Idle, Activity.Unknown, Activity.Paused }.All(state => Enum.GetValues(typeof(Activity)).Cast<Activity>().Contains(state)));
+            Assert.AreEqual(5, Enum.GetValues(typeof(Activity)).Length);
+            Assert.IsTrue(new[] { Activity.Busy, Activity.Idle, Activity.Unknown, Activity.Paused, Activity.Locked }.All(state => Enum.GetValues(typeof(Activity)).Cast<Activity>().Contains(state)));
         }
     }
 }
