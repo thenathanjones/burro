@@ -104,11 +104,4 @@ namespace Burro.Parsers
             return XDocument.Load(inputStream);
         }
     }
-
-    public enum Activity
-    {
-        Unknown,
-        Idle,
-        Busy
-    }
 }

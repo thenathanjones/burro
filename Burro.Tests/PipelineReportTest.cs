@@ -50,5 +50,12 @@ namespace Burro.Tests
             var pipeline = new PipelineReport();   
             Assert.AreEqual(BuildState.Unknown, pipeline.BuildState);
         }
+
+        [Test]
+        public void ActivityHasFourStatesIncludingUnknown()
+        {
+            Assert.AreEqual(4, Enum.GetValues(typeof(Activity)).Length);
+            Assert.IsTrue(new[] { Activity.Busy, Activity.Idle, Activity.Unknown, Activity.Paused }.All(state => Enum.GetValues(typeof(Activity)).Cast<Activity>().Contains(state)));
+        }
     }
 }

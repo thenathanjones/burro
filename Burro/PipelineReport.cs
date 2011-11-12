@@ -25,4 +25,12 @@ namespace Burro
         Success,
         Failure
     }
+
+    public enum Activity
+    {
+        Unknown,
+        Idle,
+        Paused,
+        Busy
+    }
 }
