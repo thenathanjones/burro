@@ -9,38 +9,13 @@ using Ninject;
 
 namespace Burro.BuildServers
 {
-    public class GoServer : BuildServer
+    public class GoServer : PollingBuildServer
     {
-        private readonly ITimer _timer;
-        private readonly IParser _parser;
-
         [Inject]
         public GoServer(ITimer timer, [Named("Go")] IParser parser)
         {
             _timer = timer;
             _parser = parser;
-        }
-
-        public void Initialise(IConfig config)
-        {
-            Config = config;
-
-            _parser.Initialise(Config);
-            _timer.Tick += () =>
-                               {
-                                   PipelineReports = _parser.GetPipelines();
-                                   OnPipelinesUpdated();
-                               };
-        }
-
-        public override void StartMonitoring()
-        {
-            _timer.Start();
-        }
-
-        public override void StopMonitoring()
-        {
-            _timer.Stop();
         }
     }
 }

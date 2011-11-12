@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildServers\GoServerTest.cs" />
+    <Compile Include="BuildServers\PollingBuildServerTest.cs" />
     <Compile Include="Parsers\CruiseControlParserTest.cs" />
     <Compile Include="ConfigTest.cs" />
     <Compile Include="Config\GoConfigParserTest.cs" />

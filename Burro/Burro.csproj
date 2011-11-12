@@ -55,6 +55,7 @@
     <Compile Include="BuildServers\CruiseControlServer.cs" />
     <Compile Include="BuildServers\GoServer.cs" />
     <Compile Include="BuildServers\IBuildServer.cs" />
+    <Compile Include="BuildServers\PollingBuildServer.cs" />
     <Compile Include="BurroCore.cs" />
     <Compile Include="Config\CruiseControlServerConfig.cs" />
     <Compile Include="Config\Parsers\CruiseControlConfigParser.cs" />
