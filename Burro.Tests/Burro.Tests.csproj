@@ -34,8 +34,18 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL" />
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,13 +53,11 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="YamlDotNet.Core, Version=0.2.4316.26586, Culture=neutral, PublicKeyToken=2b53052c5884d7a1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\YamlDotNet.Core.1.1.8\lib\YamlDotNet.Core.dll</HintPath>
+    <Reference Include="YamlDotNet.Core">
+      <HintPath>..\packages\YamlDotNet.Core.1.1.9\lib\YamlDotNet.Core.dll</HintPath>
     </Reference>
-    <Reference Include="YamlDotNet.RepresentationModel, Version=0.2.4316.26586, Culture=neutral, PublicKeyToken=2b53052c5884d7a1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\YamlDotNet.RepresentationModel.1.1.8\lib\YamlDotNet.RepresentationModel.dll</HintPath>
+    <Reference Include="YamlDotNet.RepresentationModel">
+      <HintPath>..\packages\YamlDotNet.RepresentationModel.1.1.9\lib\YamlDotNet.RepresentationModel.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
