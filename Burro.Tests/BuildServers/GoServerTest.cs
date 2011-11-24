@@ -14,5 +14,6 @@ namespace Burro.Tests.BuildServers
     [TestFixture]
     public class GoServerTest
     {
+
     }
 }
