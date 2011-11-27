@@ -63,10 +63,11 @@
   <ItemGroup>
     <Compile Include="BuildServers\GoServerTest.cs" />
     <Compile Include="BuildServers\PollingBuildServerTest.cs" />
+    <Compile Include="Config\TeamCityConfigParserTest.cs" />
+    <Compile Include="Config\CruiseControlConfigParserTest.cs" />
     <Compile Include="Parsers\CruiseControlParserTest.cs" />
     <Compile Include="ConfigTest.cs" />
     <Compile Include="Config\GoConfigParserTest.cs" />
-    <Compile Include="Config\TestConfigParser.cs" />
     <Compile Include="CoreTests.cs" />
     <Compile Include="PipelineReportTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

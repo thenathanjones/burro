@@ -54,12 +54,15 @@
     <Compile Include="BuildServers\GoServer.cs" />
     <Compile Include="BuildServers\IBuildServer.cs" />
     <Compile Include="BuildServers\PollingBuildServer.cs" />
+    <Compile Include="BuildServers\TeamCityServer.cs" />
     <Compile Include="BurroCore.cs" />
     <Compile Include="Config\CruiseControlServerConfig.cs" />
     <Compile Include="Config\Parsers\CruiseControlConfigParser.cs" />
     <Compile Include="Config\GoServerConfig.cs" />
     <Compile Include="Config\IConfig.cs" />
     <Compile Include="Config\Parsers\IConfigParser.cs" />
+    <Compile Include="Config\Parsers\TeamCityConfigParser.cs" />
+    <Compile Include="Config\TeamCityServerConfig.cs" />
     <Compile Include="IBurroCore.cs" />
     <Compile Include="Parsers\CruiseControlParser.cs" />
     <Compile Include="Config\Parsers\GoConfigParser.cs" />

@@ -11,7 +11,7 @@ using Ninject;
 
 namespace Burro.Tests.BuildServers
 {
-    [TestFixture]
+    [TestFixture, Ignore]
     public class GoServerTest
     {
 

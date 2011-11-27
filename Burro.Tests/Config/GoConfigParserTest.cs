@@ -13,7 +13,7 @@ using YamlDotNet.RepresentationModel;
 
 namespace Burro.Tests.Config
 {
-    [TestFixture]
+    [TestFixture, Ignore("This logic really applies to Cruise Control and something more Go specific should go here")]
     public class GoConfigParserTest
     {
         [Test]
