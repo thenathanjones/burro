@@ -4,6 +4,8 @@ namespace Burro.Config
 {
     public interface IConfig
     {
+        string Type { get; }
+
         string URL { get; set; }
 
         string Username { get; set; }

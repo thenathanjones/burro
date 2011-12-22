@@ -7,6 +7,11 @@ namespace Burro.Config
 {
     public class CruiseControlServerConfig : IConfig
     {
+        public string Type
+        {
+            get { return "CruiseControl"; }
+        }
+
         public string URL { get; set; }
 
         public string Username { get; set; }

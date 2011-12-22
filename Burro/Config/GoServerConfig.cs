@@ -7,6 +7,11 @@ namespace Burro.Config
 {
     public class GoServerConfig : IConfig
     {
+        public string Type
+        {
+            get { return "Go"; }
+        }
+
         public string URL { get; set; }
 
         public string Username { get; set; }

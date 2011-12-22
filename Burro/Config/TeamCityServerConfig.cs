@@ -4,6 +4,11 @@ namespace Burro.Config
 {
     public class TeamCityServerConfig : IConfig
     {
+        public string Type
+        {
+            get { return "TeamCity"; }
+        }
+
         public string URL { get; set; }
 
         public string Username { get; set; }
