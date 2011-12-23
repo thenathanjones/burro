@@ -54,6 +54,10 @@ namespace Burro
             {
                 BuildServers = RawConfig.Children.Select(ParseBuildServer).ToArray();
             }
+            else
+            {
+                BuildServers = new List<IBuildServer>();
+            }
         }
 
         private IBuildServer ParseBuildServer(YamlNode yamlNode)
@@ -76,7 +80,11 @@ namespace Burro
                 var configStream = new YamlStream();
                 configStream.Load(configFile);
 
-                RawConfig = configStream.Documents.First().RootNode as YamlSequenceNode;
+                RawConfig = new YamlSequenceNode();
+                if (configStream.Documents.Any())
+                {
+                    RawConfig = configStream.Documents.First().RootNode as YamlSequenceNode;
+                }
             }
             finally
             {

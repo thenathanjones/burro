@@ -23,14 +23,6 @@ namespace Burro.Tests
             _kernel = new StandardKernel();
         }
 
-        [Test]
-        public void LoadsConfigAsYaml()
-        {
-            var core = _kernel.Get<BurroCore>();
-            core.Initialise("Config\\blank.yml");
-            Assert.IsNotNull(core.RawConfig);
-        }
-
         [Test(Description = "Integration")]
         public void LoadsBuildServersFromYaml()
         {
@@ -43,6 +35,17 @@ namespace Burro.Tests
             Assert.AreEqual(2, core.BuildServers.Count());
             Assert.IsInstanceOf<GoServer>(core.BuildServers.First());
             Assert.IsInstanceOf<CruiseControlServer>(core.BuildServers.ElementAt(1));
+        }
+
+        [Test]
+        public void HandlesBlankConfig()
+        {
+            var core = _kernel.Get<BurroCore>();
+            core.Initialise("Config\\blank.yml");
+            
+            Assert.IsNotNull(core.RawConfig);
+            Assert.IsNotNull(core.BuildServers);
+            Assert.AreEqual(0, core.BuildServers.Count());
         }
     }
 }
